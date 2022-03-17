@@ -5,6 +5,7 @@ import EmailNewsletter from '../components/EmailNewsletter'
 import InstagramGrid from '../components/InstagramGrid'
 import LatestBlogs from '../components/LatestBlogs'
 import Pagination from '../components/Pagination'
+import { Link } from 'react-router-dom'
 const BlogListing = () => {
   const [blogBanner, setblogBanner] = useState()
   const [blogList, setblogList] = useState()
@@ -23,13 +24,6 @@ const BlogListing = () => {
     }
   }, [])
 
-  // var totalItems = blogList?.post_details.length
-  //  var lastIndex = currentPage * itemsPerPage
-  //   var firstIndex = lastIndex - itemsPerPage
-  //   var currentList = blogList?.post_details.slice(firstIndex , lastIndex)
-  //   const paginate=(number)=>{
-  //     setcurrentPage(number)
-  //   }
   return (
     <>
     {
@@ -43,8 +37,7 @@ const BlogListing = () => {
     <div className="pixel_blog_listing_section_wrap row">
       <div className="col-md-8 col-12">
          <BlogList list={blogList?.post_details } />
-     {/* <Pagination total={totalItems} itemperpage={itemsPerPage} paginate={paginate} currentPage={currentPage}/> */}
-     <Pagination />
+         <Pagination />
 
     
       </div>
@@ -68,16 +61,16 @@ const BlogList= (props)=>{
         props.list?.map(item =>{
           return (
             <li  key={item.id}>
-              <a href="#" className="blog">
-            <div className="blog_image_wrap">
-              <img src={item.featured_image.src} alt="image"/>
-            </div>
-            <div className="blog_details">
-              <span>{item.post_date}</span>
-              <h4>{item.name}</h4>
-              <div dangerouslySetInnerHTML={{__html:item.post_excerpt}}></div>
-            </div>
-              </a>
+              <Link className="blog" to={`/blog-details?id=${item.id}`}>
+                <div className="blog_image_wrap">
+                  <img src={item.featured_image.src} alt="image"/>
+                </div>
+                <div className="blog_details">
+                  <span>{item.post_date}</span>
+                  <h4>{item.name}</h4>
+                  <div dangerouslySetInnerHTML={{__html:item.post_excerpt}}></div>
+                </div>
+              </Link>
           </li>
           )
         })

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <nav>
-    <ul>
+    <ul className='d-flex pt-5 pb-5'>
       <li>
         <Link to='/press'>Press listing</Link>
       </li>

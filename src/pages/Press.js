@@ -1,4 +1,5 @@
 import React,{useEffect , useState} from 'react'
+import { Link } from 'react-router-dom';
 
 const Press = () => {
   const [pressData, setpressData] = useState();
@@ -78,10 +79,10 @@ export const PressFeedbacksGrid =(props)=>{
                 <div className="press_img_wrap">
                   <img src={item.logo.src} alt="image"/>
                 </div>
-                <h5>{item.name}</h5>
+                <h5>{item.name}</h5>{item.id}
                 <div dangerouslySetInnerHTML={{__html:item.post_excerpt}}></div>
                 {/* <p>{item.post_excerpt}</p> */}
-                <a href={item.permalink} className="read_more">Read more</a>
+                <Link to={`/press-details?id=${item.id}`} className="read_more">Read more</Link>
               </div>
             </div>
             )

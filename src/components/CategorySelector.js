@@ -1,5 +1,5 @@
 import React ,{useEffect , useState} from 'react'
-
+import { Link } from 'react-router-dom'
 const CategorySelector = (props) => {
   const [categorylist, setcategorylist] = useState()
   useEffect(() => {
@@ -15,7 +15,7 @@ const CategorySelector = (props) => {
       <h3>{props.title}</h3>
       {
         categorylist?.map(item =>{
-          return   <li className="category" key={item.id}><a href='#'>{item.name}</a></li>
+          return   <li className="category" key={item.id}><Link to='#'>{item.name}</Link></li>
           // console.log(item)
         })
       }

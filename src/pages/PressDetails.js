@@ -1,11 +1,14 @@
 import React,{useEffect , useState} from 'react'
 import EmailNewsletter from '../components/EmailNewsletter';
 import LatestBlogs from '../components/LatestBlogs';
+import {useLocation} from "react-router-dom";
 
 const PressDetails = () => {
 const [pressDetail, setpressDetail] = useState()
+const search = useLocation().search;
+const id = new URLSearchParams(search).get('id');
   useEffect(() => {
-    fetch('https://safqat.pixelflames.net/wp-json/wp/v2/posts?id=432&post_type=blog')
+    fetch(`https://safqat.pixelflames.net/wp-json/wp/v2/posts?id=${id}&post_type=press`)
     .then(response => response.json())
     .then(json => {setpressDetail(json) ;})  
 

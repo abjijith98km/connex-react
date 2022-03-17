@@ -3,11 +3,14 @@ import CategorySelector from '../components/CategorySelector'
 import EmailNewsletter from '../components/EmailNewsletter'
 import InstagramGrid from '../components/InstagramGrid'
 import LatestBlogs from '../components/LatestBlogs'
-
+import { Link } from 'react-router-dom'
+import {useLocation} from "react-router-dom";
 const BlogDetail = () => {
   const [blogsDetail, setblogsDetail] = useState()
+  const search = useLocation().search;
+  const id = new URLSearchParams(search).get('id');
   useEffect(() => {
-    fetch('https://safqat.pixelflames.net/wp-json/wp/v2/posts?id=432&post_type=blog')
+    fetch(`https://safqat.pixelflames.net/wp-json/wp/v2/posts?id=${id}&post_type=blog`)
     .then(response => response.json())
     .then(json => { setblogsDetail(json)})    
     return () => {
@@ -29,7 +32,7 @@ const BlogDetail = () => {
           <ul className="blogs_listing_block">
             <h3>You may also like</h3>
             <li >
-              <a href="#" className="blog">
+              <Link to="#" className="blog">
                 <div className="blog_image_wrap">
                   <img src="./uploads/press/blog.jpg" alt="image"/>
                 </div>
@@ -38,10 +41,10 @@ const BlogDetail = () => {
                   <h4>Does a pandemic require a special type of leadership?</h4>
                   <p>The COVID-19 pandemic, with all its challenges and restrictions, has been a prime example of what is commonly known …</p>
                 </div>
-              </a>
+              </Link>
             </li>
             <li >
-              <a href="#" className="blog">
+              <Link to="#" className="blog">
                 <div className="blog_image_wrap">
                   <img src="./uploads/press/blog.jpg" alt="image"/>
                 </div>
@@ -50,7 +53,7 @@ const BlogDetail = () => {
                   <h4>The B2B marketplace revolution—Tapping into a multi-trillion-dollar industry</h4>
                   <p>The COVID-19 pandemic, with all its challenges and restrictions, has been commonly known … </p>
                 </div>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
