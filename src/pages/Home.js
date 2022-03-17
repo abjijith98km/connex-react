@@ -16,6 +16,15 @@ const Home = () => {
       <li>
         <Link to='/blog-listing'>Blog listing</Link>
       </li>
+      <li>
+        <Link to='/become-buyer'>Become buyer</Link>
+      </li>
+      <li>
+        <Link to='/become-seller'>Become seller</Link>
+      </li>
+      <li>
+        <Link to='/supplier-about'>supplier about</Link>
+      </li>
     </ul>
     </nav>
   )

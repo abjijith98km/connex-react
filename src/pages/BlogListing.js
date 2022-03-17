@@ -8,8 +8,8 @@ import Pagination from '../components/Pagination'
 const BlogListing = () => {
   const [blogBanner, setblogBanner] = useState()
   const [blogList, setblogList] = useState()
-  const [currentPage, setcurrentPage] = useState(1)
-  const [itemsPerPage, setitemsPerPage] = useState(2)
+  // const [currentPage, setcurrentPage] = useState(1)
+  // const [itemsPerPage, setitemsPerPage] = useState(2)
   useEffect(() => {
     fetch('https://safqat.pixelflames.net/wp-json/acf/v3/pages?slug[]=blog')
     .then(response => response.json())
@@ -23,13 +23,13 @@ const BlogListing = () => {
     }
   }, [])
 
-  var totalItems = blogList?.post_details.length
-   var lastIndex = currentPage * itemsPerPage
-    var firstIndex = lastIndex - itemsPerPage
-    var currentList = blogList?.post_details.slice(firstIndex , lastIndex)
-    const paginate=(number)=>{
-      setcurrentPage(number)
-    }
+  // var totalItems = blogList?.post_details.length
+  //  var lastIndex = currentPage * itemsPerPage
+  //   var firstIndex = lastIndex - itemsPerPage
+  //   var currentList = blogList?.post_details.slice(firstIndex , lastIndex)
+  //   const paginate=(number)=>{
+  //     setcurrentPage(number)
+  //   }
   return (
     <>
     {
@@ -42,14 +42,16 @@ const BlogListing = () => {
   <div className="container">
     <div className="pixel_blog_listing_section_wrap row">
       <div className="col-md-8 col-12">
-         <BlogList list={currentList } />
-     <Pagination total={totalItems} itemperpage={itemsPerPage} paginate={paginate} currentPage={currentPage}/>
+         <BlogList list={blogList?.post_details } />
+     {/* <Pagination total={totalItems} itemperpage={itemsPerPage} paginate={paginate} currentPage={currentPage}/> */}
+     <Pagination />
+
     
       </div>
       <div className="col-md-4 col-12">
-      <LatestBlogs title='Latest posts'/>
-         <CategorySelector title='Categoris'/>
-        <InstagramGrid title='Instagram'/>
+         <LatestBlogs />
+         <CategorySelector title='Categoris'  url='https://safqat.pixelflames.net/wp-json/wp/v2/blog-category'/>
+          <InstagramGrid />
           <EmailNewsletter/>
       </div>
     </div>
@@ -65,15 +67,17 @@ const BlogList= (props)=>{
       {
         props.list?.map(item =>{
           return (
-            <li className="blog" key={item.id}>
+            <li  key={item.id}>
+              <a href="#" className="blog">
             <div className="blog_image_wrap">
               <img src={item.featured_image.src} alt="image"/>
             </div>
             <div className="blog_details">
               <span>{item.post_date}</span>
               <h4>{item.name}</h4>
-              <p>{item.post_excerpt}</p>
+              <div dangerouslySetInnerHTML={{__html:item.post_excerpt}}></div>
             </div>
+              </a>
           </li>
           )
         })

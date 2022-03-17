@@ -1,14 +1,24 @@
-import React from 'react'
+import React ,{useEffect , useState} from 'react'
 
 const CategorySelector = (props) => {
+  const [categorylist, setcategorylist] = useState()
+  useEffect(() => {
+    fetch(props.url)
+    .then(response => response.json())
+    .then(json => {setcategorylist(json) ;})  
+    return () => {
+      // second
+    }
+  }, [])
   return (
     <ul className="latest_post_listing">
-    <h3>{props.title}</h3>
-    <li className="category"><a href="#">Business</a></li>
-    <li className="category"><a href="#">Beauty & Personal Care</a></li>
-    <li className="category"><a href="#">Health & Wellness</a></li>
-    <li className="category"><a href="#">Home, Garden & Furniture</a></li>
-    <li className="category"><a href="#">Machinery and Equipments</a></li>
+      <h3>{props.title}</h3>
+      {
+        categorylist?.map(item =>{
+          return   <li className="category" key={item.id}><a href='#'>{item.name}</a></li>
+          // console.log(item)
+        })
+      }
   </ul>
   )
 }

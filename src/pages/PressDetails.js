@@ -1,9 +1,68 @@
-import React from 'react'
+import React,{useEffect , useState} from 'react'
+import EmailNewsletter from '../components/EmailNewsletter';
+import LatestBlogs from '../components/LatestBlogs';
 
 const PressDetails = () => {
+const [pressDetail, setpressDetail] = useState()
+  useEffect(() => {
+    fetch('https://safqat.pixelflames.net/wp-json/wp/v2/posts?id=432&post_type=blog')
+    .then(response => response.json())
+    .then(json => {setpressDetail(json) ;})  
+
+    return () => {
+      // second
+    }
+  }, [])
   return (
     <>
+    
+<section className="pixel_blog_listing_section">
+  <div className="container">
+    <div className="pixel_blog_listing_section_wrap row">
+      <div className="col-md-8 col-12">
+         <PressDetailsBlock data={pressDetail?.post_details[0]}/>  
+      </div>
+      <div className="col-md-4 col-12">
+        <LatestBlogs />
+       <EmailNewsletter />
+      </div>
+
+    </div>
+  </div>
+</section>
     </>
+  )
+}
+
+const PressDetailsBlock = ({data})=>{
+  return(
+    <div className="pixel_blogs_details_block">
+    <ul className="blogs_breadcrumb">
+      <li>About safqat</li>
+      <li>Thought Leadership</li>
+    </ul>
+    <div className="blogs_heaader">
+      <h2>{data?.name}</h2>
+      <div dangerouslySetInnerHTML={{__html:data?.post_excerpt}}></div>
+      {/* <p>{props.data.post_excerpt}</p> */}
+      <div className="profile_banner">
+        <div className="profile_image">
+          <img src={data?.author.profile} alt="img"/>
+        </div>
+        <div className="profile_body">
+          <h4>{data?.author.name}</h4>
+          <h4>{data?.post_date}</h4>
+        </div>
+      </div>
+    </div>
+    <div className="blogs_feature_image press_feature_image">
+      <img src={data?.featured_image.src} alt="image"/>
+    </div>
+    <div className="blogs_bodycopy" dangerouslySetInnerHTML={{__html:data?.post_content}}>
+     
+        
+    </div>
+  </div>
   )
 }
 

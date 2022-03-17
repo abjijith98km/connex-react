@@ -22,38 +22,42 @@ const BlogDetail = () => {
         <div className="col-md-8 col-12">
           {
           blogsDetail?.post_details?.map(data =>{
-            return <BlogDetailBlock title={data.name} date={data.post_date} mainImage={data.featured_image.src} content={data.post_content}/>
+            return <BlogDetailBlock key={data.id} title={data.name} date={data.post_date} mainImage={data.featured_image.src} content={data.post_content}/>
           })
           }
         
           <ul className="blogs_listing_block">
             <h3>You may also like</h3>
-            <li className="blog">
-              <div className="blog_image_wrap">
-                <img src="./uploads/press/blog.jpg" alt="image"/>
-              </div>
-              <div className="blog_details">
-                <span>December 28, 2020</span>
-                <h4>Does a pandemic require a special type of leadership?</h4>
-                <p>The COVID-19 pandemic, with all its challenges and restrictions, has been a prime example of what is commonly known …</p>
-              </div>
+            <li >
+              <a href="#" className="blog">
+                <div className="blog_image_wrap">
+                  <img src="./uploads/press/blog.jpg" alt="image"/>
+                </div>
+                <div className="blog_details">
+                  <span>December 28, 2020</span>
+                  <h4>Does a pandemic require a special type of leadership?</h4>
+                  <p>The COVID-19 pandemic, with all its challenges and restrictions, has been a prime example of what is commonly known …</p>
+                </div>
+              </a>
             </li>
-            <li className="blog">
-              <div className="blog_image_wrap">
-                <img src="./uploads/press/blog.jpg" alt="image"/>
-              </div>
-              <div className="blog_details">
-                <span>December 28, 2020</span>
-                <h4>The B2B marketplace revolution—Tapping into a multi-trillion-dollar industry</h4>
-                <p>The COVID-19 pandemic, with all its challenges and restrictions, has been commonly known … </p>
-              </div>
+            <li >
+              <a href="#" className="blog">
+                <div className="blog_image_wrap">
+                  <img src="./uploads/press/blog.jpg" alt="image"/>
+                </div>
+                <div className="blog_details">
+                  <span>December 28, 2020</span>
+                  <h4>The B2B marketplace revolution—Tapping into a multi-trillion-dollar industry</h4>
+                  <p>The COVID-19 pandemic, with all its challenges and restrictions, has been commonly known … </p>
+                </div>
+              </a>
             </li>
           </ul>
         </div>
         <div className="col-md-4 col-12">
-          <LatestBlogs title='Latest posts'/>
-         <CategorySelector title='Categoris'/>
-        <InstagramGrid title='Instagram'/>
+          <LatestBlogs />
+         <CategorySelector title='Categoris' url='https://safqat.pixelflames.net/wp-json/wp/v2/blog-category'/>
+        <InstagramGrid />
           <EmailNewsletter/>
         </div>
   
@@ -77,11 +81,11 @@ export const BlogDetailBlock=(props)=>{
     <div className="blogs_feature_image">
       <img src={props.mainImage} alt="image"/>
     </div>
-    <div className="blogs_bodycopy" >
-<p>
+    <div className="blogs_bodycopy" dangerouslySetInnerHTML={{__html:props.content}}>
+{/* <p>
 
-      {props.content}
-</p>
+      {}
+</p> */}
         
     </div>
   </div>
