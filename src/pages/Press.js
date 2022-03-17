@@ -27,7 +27,9 @@ const Press = () => {
       )
       })
     }
-      <PressFeedbacksGrid list={pressList?.post_details}/>
+    {
+      pressList?.post_details ? <PressFeedbacksGrid list={pressList?.post_details}/>: <h4 className='text-center color-primary'>Loading...</h4>
+    }
 
 
     </>

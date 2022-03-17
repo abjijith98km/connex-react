@@ -24,9 +24,11 @@ const BlogDetail = () => {
       <div className="pixel_blog_listing_section_wrap row">
         <div className="col-md-8 col-12">
           {
+            blogsDetail?.post_details ?
           blogsDetail?.post_details?.map(data =>{
             return <BlogDetailBlock key={data.id} title={data.name} date={data.post_date} mainImage={data.featured_image.src} content={data.post_content}/>
           })
+          :<h4 className='text-center color-primary'>Loading...</h4>
           }
         
           <ul className="blogs_listing_block">

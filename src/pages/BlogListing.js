@@ -4,13 +4,20 @@ import CategorySelector from '../components/CategorySelector'
 import EmailNewsletter from '../components/EmailNewsletter'
 import InstagramGrid from '../components/InstagramGrid'
 import LatestBlogs from '../components/LatestBlogs'
-import Pagination from '../components/Pagination'
 import { Link } from 'react-router-dom'
+import ReactPaginate from 'react-paginate'
 const BlogListing = () => {
   const [blogBanner, setblogBanner] = useState()
   const [blogList, setblogList] = useState()
-  // const [currentPage, setcurrentPage] = useState(1)
-  // const [itemsPerPage, setitemsPerPage] = useState(2)
+  const [currentPage, setcurrentPage] = useState(1)
+  const [itemsPerPage, setitemsPerPage] = useState(3)
+  var totalItems = blogList?.post_details.length;
+  var totalPages = Math.ceil(totalItems / itemsPerPage);
+  var indexOfLast = currentPage * itemsPerPage;
+  var indexOfOne = indexOfLast - itemsPerPage;
+  
+  var posts = blogList?.post_details.slice(indexOfOne, indexOfLast)
+  console.log(posts);
   useEffect(() => {
     fetch('https://safqat.pixelflames.net/wp-json/acf/v3/pages?slug[]=blog')
     .then(response => response.json())
@@ -23,7 +30,12 @@ const BlogListing = () => {
       // second
     }
   }, [])
-
+const changePagination =(number)=>{
+  setcurrentPage(number)
+}
+const handlePaginate =(data)=>{
+  setcurrentPage(data.selected + 1)
+}
   return (
     <>
     {
@@ -36,8 +48,22 @@ const BlogListing = () => {
   <div className="container">
     <div className="pixel_blog_listing_section_wrap row">
       <div className="col-md-8 col-12">
-         <BlogList list={blogList?.post_details } />
-         <Pagination />
+        {
+          blogList?.post_details? <BlogList list={posts } /> :<h4 className='text-center color-primary'>Loading...</h4>
+        }
+         
+         {
+           totalPages > 1 &&
+         <div className="pagination-wrap justify-content-start">
+            <span onClick={()=>changePagination(1)} >
+                  <a href='#'>First</a>
+                </span>
+            <ReactPaginate pageRangeDisplayed={2}  pageCount={totalPages} breakClassName={'a-disabled'} breakLinkClassName={'a-disabled'} pageRangeDisplayed={2} marginPagesDisplayed={2}  containerClassName={' a-pagination'} onPageChange={handlePaginate}  previousLabel={<img src="uploads/products/left-ar.svg" />} activeClassName={'active'}	 breakLabel={"..."} nextLabel={<img src="uploads/products/right-ar.svg" />} pageClassName={'a-selected'} forcePage={currentPage - 1}/>
+            <span onClick={()=>changePagination(totalPages)}>
+                  <a  href='#'>Last</a>
+                </span>
+         </div>
+         }
 
     
       </div>
