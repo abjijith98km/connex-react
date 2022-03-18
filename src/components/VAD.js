@@ -11,7 +11,7 @@ const VAD = ({title,list}) => {
               {
                   list?.map(item =>{
                       return(
-                        <div className="row">
+                        <div className="row" key={item.heading}>
                         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 value-added-image">
                             <img src={item.related_image} alt="value add image"/>
                         </div>

@@ -1,5 +1,4 @@
 import React,{useEffect , useState} from 'react'
-import EmailNewsletter from '../components/EmailNewsletter';
 import LatestBlogs from '../components/LatestBlogs';
 import {useLocation} from "react-router-dom";
 
@@ -28,8 +27,7 @@ const id = new URLSearchParams(search).get('id');
         }
       </div>
       <div className="col-md-4 col-12">
-        <LatestBlogs />
-       <EmailNewsletter />
+        <LatestBlogs url='https://safqat.pixelflames.net/wp-json/wp/post/featured_press' type='press' currentId={id} />
       </div>
 
     </div>
@@ -42,10 +40,7 @@ const id = new URLSearchParams(search).get('id');
 const PressDetailsBlock = ({data})=>{
   return(
     <div className="pixel_blogs_details_block">
-    <ul className="blogs_breadcrumb">
-      <li>About safqat</li>
-      <li>Thought Leadership</li>
-    </ul>
+  
     <div className="blogs_heaader">
       <h2>{data?.name}</h2>
       <div dangerouslySetInnerHTML={{__html:data?.post_excerpt}}></div>

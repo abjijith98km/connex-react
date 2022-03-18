@@ -1,11 +1,11 @@
 import React,{useState , useEffect} from 'react'
 import { Banner } from './Press'
 import CategorySelector from '../components/CategorySelector'
-import EmailNewsletter from '../components/EmailNewsletter'
 import InstagramGrid from '../components/InstagramGrid'
 import LatestBlogs from '../components/LatestBlogs'
 import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
+
 const BlogListing = () => {
   const [blogBanner, setblogBanner] = useState()
   const [blogList, setblogList] = useState()
@@ -15,9 +15,9 @@ const BlogListing = () => {
   var totalPages = Math.ceil(totalItems / itemsPerPage);
   var indexOfLast = currentPage * itemsPerPage;
   var indexOfOne = indexOfLast - itemsPerPage;
-  
   var posts = blogList?.post_details.slice(indexOfOne, indexOfLast)
-  console.log(posts);
+  var categoryString = '';
+
   useEffect(() => {
     fetch('https://safqat.pixelflames.net/wp-json/acf/v3/pages?slug[]=blog')
     .then(response => response.json())
@@ -64,14 +64,11 @@ const handlePaginate =(data)=>{
                 </span>
          </div>
          }
-
-    
       </div>
       <div className="col-md-4 col-12">
-         <LatestBlogs />
-         <CategorySelector title='Categoris'  url='https://safqat.pixelflames.net/wp-json/wp/v2/blog-category'/>
+         <LatestBlogs url='https://safqat.pixelflames.net/wp-json/wp/post/featured_blog' type='blog'/>
+         <CategorySelector title='Categoris'  url='https://safqat.pixelflames.net/wp-json/wp/v2/blog-category' />
           <InstagramGrid />
-          <EmailNewsletter/>
       </div>
     </div>
   </div>

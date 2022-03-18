@@ -24,7 +24,7 @@ const BecomeSeller = () => {
 
     <BuySafqatBanner registerData={becomeSellerData?.registration_seller}/>
 
-    <WhyRegister />
+    <WhyRegister mainTitle={becomeSellerData?.register_step_title} subTitle={becomeSellerData?.register_step_sub_text} rows={becomeSellerData?.registration_steps}/>
 
     <SafqatBenefits featureImage={becomeSellerData?.benefits_image} mainTitle={becomeSellerData?.benefits_title} benefits={becomeSellerData?.benefits_safqat} highlight={becomeSellerData?.benefits_highlight}/>
 

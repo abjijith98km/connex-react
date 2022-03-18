@@ -16,7 +16,7 @@ const CategorySelector = (props) => {
       {
         categorylist?.map(item =>{
           // console.log(item);
-          return   <li className="category" key={item.id}><Link to={item.link}>{item.name}</Link></li>
+          return   <li className="category" key={item.id}><a onClick={(e)=>{console.log(e)}}  dangerouslySetInnerHTML={{__html:item.name}}></a>{item.id}</li>
           // console.log(item)
         })
       }
