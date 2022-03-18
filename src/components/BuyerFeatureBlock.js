@@ -7,9 +7,9 @@ const BuyerFeatureBlock = ({services}) => {
         <div className="feature-section">
             <div className="row">
                 {
-                    services?.map(service =>{
+                    services?.map((service,index) =>{
                         return(
-                            <div className="col-lg-4 col-md-6 col-sm-6 col-xs-6">
+                            <div className="col-lg-4 col-md-6 col-sm-6 col-xs-6" key={index}>
                             <div className="feature-box">
                                 <div className="feature-icon">
                                     <img src={service.icon} alt=" find what you need"/>

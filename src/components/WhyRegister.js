@@ -9,14 +9,14 @@ const WhyRegister = ({mainTitle,subTitle,rows}) => {
             <h3>{mainTitle}</h3>
             <span className="sub-main">{subTitle}</span>
             {
-                rows?.map(row =>{
+                rows?.map((row,index) =>{
                     return(
-                        <div className="row" >
+                        <div className="row" key={index}>
 
                             {
-                                row?.steps_row.map(item =>{
+                                row?.steps_row.map((item,index) =>{
                                     return(
-                                        <div className="register-step" key={item.step_number}>
+                                        <div className="register-step" key={index}>
                                             <div className="step-icon">
                                                 <img src={item.icon} alt="register icon"/>
                                             </div>

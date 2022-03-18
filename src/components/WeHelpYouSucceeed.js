@@ -7,9 +7,9 @@ const WeHelpYouSucceeed = ({mainTitle , features}) => {
     <h3>{mainTitle}</h3>
     <div className="our_services_card row">
       {
-        features?.map(feature =>{
+        features?.map((feature,index) =>{
           return(
-            <div className="col-lg-4 col-md-6 col-12">
+            <div className="col-lg-4 col-md-6 col-12" key={index}>
             <div className="services_card_wrap">
               <div className="service_image">
                 <img src={feature?.related_image} alt="image"/>

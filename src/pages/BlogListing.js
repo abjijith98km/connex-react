@@ -5,42 +5,28 @@ import InstagramGrid from '../components/InstagramGrid'
 import LatestBlogs from '../components/LatestBlogs'
 import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
+import {useLocation} from "react-router-dom";
 
 const BlogListing = () => {
   const [blogBanner, setblogBanner] = useState()
-  const [blogList, setblogList] = useState()
-  const [currentPage, setcurrentPage] = useState(1)
-  const [itemsPerPage, setitemsPerPage] = useState(3)
-  var totalItems = blogList?.post_details.length;
-  var totalPages = Math.ceil(totalItems / itemsPerPage);
-  var indexOfLast = currentPage * itemsPerPage;
-  var indexOfOne = indexOfLast - itemsPerPage;
-  var posts = blogList?.post_details.slice(indexOfOne, indexOfLast)
-  var categoryString = '';
-
+  const search = useLocation().search;
+  const categoryId = new URLSearchParams(search).get('category');
   useEffect(() => {
     fetch('https://safqat.pixelflames.net/wp-json/acf/v3/pages?slug[]=blog')
     .then(response => response.json())
     .then(json => {setblogBanner(json) ;})  
 
-    fetch('https://safqat.pixelflames.net/wp-json/wp/v2/posts?post_type=blog')
-    .then(response => response.json())
-    .then(json => {setblogList(json) ;})  
+ 
     return () => {
       // second
     }
   }, [])
-const changePagination =(number)=>{
-  setcurrentPage(number)
-}
-const handlePaginate =(data)=>{
-  setcurrentPage(data.selected + 1)
-}
+
   return (
     <>
     {
       blogBanner?.map(data =>{
-        return <Banner bannerImage={data.acf.banner_image} bannerTitle={data.acf.banner_title}/>
+        return <Banner key={data.id} bannerImage={data.acf.banner_image} bannerTitle={data.acf.banner_title}/>
       })
     }
    
@@ -49,21 +35,13 @@ const handlePaginate =(data)=>{
     <div className="pixel_blog_listing_section_wrap row">
       <div className="col-md-8 col-12">
         {
-          blogList?.post_details? <BlogList list={posts } /> :<h4 className='text-center color-primary'>Loading...</h4>
+          categoryId? 
+          
+          <BlogList url={`https://safqat.pixelflames.net/wp-json/wp/v2/posts?post_type=blog&category=${categoryId}`} />
+          // <h1>hi there</h1>
+           :<BlogList  url='https://safqat.pixelflames.net/wp-json/wp/v2/posts?post_type=blog'/>  
         }
-         
-         {
-           totalPages > 1 &&
-         <div className="pagination-wrap justify-content-start">
-            <span onClick={()=>changePagination(1)} >
-                  <a href='#'>First</a>
-                </span>
-            <ReactPaginate pageRangeDisplayed={2}  pageCount={totalPages} breakClassName={'a-disabled'} breakLinkClassName={'a-disabled'} pageRangeDisplayed={2} marginPagesDisplayed={2}  containerClassName={' a-pagination'} onPageChange={handlePaginate}  previousLabel={<img src="uploads/products/left-ar.svg" />} activeClassName={'active'}	 breakLabel={"..."} nextLabel={<img src="uploads/products/right-ar.svg" />} pageClassName={'a-selected'} forcePage={currentPage - 1}/>
-            <span onClick={()=>changePagination(totalPages)}>
-                  <a  href='#'>Last</a>
-                </span>
-         </div>
-         }
+      
       </div>
       <div className="col-md-4 col-12">
          <LatestBlogs url='https://safqat.pixelflames.net/wp-json/wp/post/featured_blog' type='blog'/>
@@ -77,11 +55,43 @@ const handlePaginate =(data)=>{
   )
 }
 
-const BlogList= (props)=>{
+const BlogList= ({url})=>{
+
+  useEffect(() => {
+   getData(url)
+   
+  
+    return () => {
+    }
+    }, [])
+    const getData = async (url)=>{
+      await fetch(url)
+      .then(response => response.json())
+      .then(json => {setblogList(json) ;})  
+    }
+    const [blogList, setblogList] = useState()
+    const [currentPage, setcurrentPage] = useState(1)
+    const [itemsPerPage, setitemsPerPage] = useState(8)
+    var totalItems = blogList?.post_details.length;
+    var indexOfLast = currentPage * itemsPerPage;
+    var indexOfOne = indexOfLast - itemsPerPage;
+    var posts = blogList?.post_details.slice(indexOfOne, indexOfLast)
+    var totalPages = Math.ceil(totalItems / itemsPerPage);
+
+    const changePagination =(number)=>{
+        setcurrentPage(number)
+      }
+      const handlePaginate =(data)=>{
+          setcurrentPage(data.selected + 1)
+        }
+  
   return(
+    <>
     <ul className="blogs_listing_block">
+      
       {
-        props.list?.map(item =>{
+        posts? 
+        posts?.map(item =>{
           return (
             <li  key={item.id}>
               <Link className="blog" to={`/blog-details?id=${item.id}`}>
@@ -96,9 +106,24 @@ const BlogList= (props)=>{
               </Link>
           </li>
           )
-        })
+        }):
+        <h3 className='text-primary text-center font-md'>Loading...</h3>
       }
   </ul>
+
+  {
+           totalPages > 1 &&
+         <div className="pagination-wrap justify-content-start">
+            <span onClick={()=>changePagination(1)} >
+                  <a href='#'>First</a>
+                </span>
+            <ReactPaginate pageRangeDisplayed={2}  pageCount={totalPages} breakClassName={'a-disabled'} breakLinkClassName={'a-disabled'} pageRangeDisplayed={2} marginPagesDisplayed={2}  containerClassName={' a-pagination'} onPageChange={handlePaginate}  previousLabel={<img src="uploads/products/left-ar.svg" />} activeClassName={'active'}	 breakLabel={"..."} nextLabel={<img src="uploads/products/right-ar.svg" />} pageClassName={'a-selected'} forcePage={currentPage - 1}/>
+            <span onClick={()=>changePagination(totalPages)}>
+                  <a  href='#'>Last</a>
+                </span>
+         </div>
+         }
+    </>
   )
 }
 export default BlogListing

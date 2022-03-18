@@ -12,7 +12,7 @@ const Header = () => {
       <div className="filter-search">
         <form className="filter-search-form" role="search" aria-haspopup="listbox" aria-owns="list-menu" aria-expanded="true">
           <button className="filter">Supplier</button>
-          <input className="form-control search-box" aria-autocomplete="list" aria-controls="list-menu" aria-labelledby="list-label" autocomplete="off" type="search" placeholder="What are you looking for…"/>
+          <input className="form-control search-box" aria-autocomplete="list" aria-controls="list-menu" aria-labelledby="list-label" autoComplete="off" type="search" placeholder="What are you looking for…"/>
           <button className="search"></button>
           <div id="list-menu" role="listbox" aria-labelledby="list-label">
             <ul className="pixel-search-dropdown">

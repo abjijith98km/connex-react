@@ -23,12 +23,12 @@ const Press = () => {
     {
       pressData?.map(data =>{
         return(
-          <Banner bannerImage={data.acf.banner_image} bannerTitle={data.acf.banner_title}/>
+          <Banner key={data.id} bannerImage={data.acf.banner_image} bannerTitle={data.acf.banner_title}/>
       )
       })
     }
     {
-      pressList?.post_details ? <PressFeedbacksGrid list={pressList?.post_details}/>: <h4 className='text-center color-primary'>Loading...</h4>
+      pressList?.post_details ? <PressFeedbacksGrid list={pressList?.post_details}/>: <h4 className='text-center text-primary'>Loading...</h4>
     }
 
 

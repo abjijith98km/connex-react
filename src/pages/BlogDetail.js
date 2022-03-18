@@ -27,7 +27,7 @@ const BlogDetail = () => {
             (
                <BlogDetailBlock key={blogsDetail?.post_details[0].id} category={blogsDetail?.post_details[0].category} title={blogsDetail?.post_details[0].name} date={blogsDetail?.post_details[0].post_date} mainImage={blogsDetail?.post_details[0].featured_image.src} content={blogsDetail?.post_details[0].post_content}/>)
 
-            :<h4 className='text-center color-primary'>Loading...</h4>
+            :<h4 className='text-center text-primary'>Loading...</h4>
           }
         
          <BlogsSuggestions currentId={id} currentCategory={blogsDetail?.post_details[0].category}/>

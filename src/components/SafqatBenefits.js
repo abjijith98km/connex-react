@@ -17,9 +17,9 @@ const SafqatBenefits = ({featureImage,mainTitle , benefits , highlight }) => {
               <h3>{mainTitle}</h3>
               <div className="row">
                 {
-                 benefits?.map(benefit =>{
+                 benefits?.map((benefit,index) =>{
                    return (
-                    <div className="col-6">
+                    <div className="col-6" key={index}>
                     <h5>{benefit.title}</h5>
                     <div dangerouslySetInnerHTML={{__html:benefit.description}}></div>
                   </div>

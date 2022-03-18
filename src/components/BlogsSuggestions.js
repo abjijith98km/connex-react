@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import BlogDetail from '../pages/BlogDetail'
 
 const BlogsSuggestions = ({currentId, currentCategory}) => {
   const [suggestedBlog, setsuggestedBlog] = useState()
@@ -12,12 +11,9 @@ const BlogsSuggestions = ({currentId, currentCategory}) => {
       // second
     }
   }, [])
-  var posts = suggestedBlog?.post_details.filter(blog => blog?.id != currentId && blog?.category.toLowerCase() == currentCategory?.toLowerCase())
-  {
-    console.log(posts);
-  }
+  var posts = suggestedBlog?.post_details.filter(blog => blog?.id != currentId && (blog?.category.toLowerCase().includes(currentCategory?.toLowerCase()) || currentCategory?.toLowerCase().includes(blog?.category.toLowerCase())))
   return (
-  <>
+    <>
 {  posts?.length >=1 &&
 
     <ul className="blogs_listing_block">
