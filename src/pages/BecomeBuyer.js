@@ -18,8 +18,10 @@ const BecomeBuyer = () => {
   }, [])
   
   return (
-    <div>
-    
+    <>
+    {
+      becomeBuyerData?
+    <>
       <Banner bannerTitle={becomeBuyerData?.banner.main_head} bannerImage={becomeBuyerData?.banner.banner_image} bannerSubtitle={becomeBuyerData?.banner.sub_text} bannerBtn={becomeBuyerData?.banner.cta_button}/>
     
      <BuyerFeatureBlock services={becomeBuyerData?.services}/>
@@ -29,7 +31,17 @@ const BecomeBuyer = () => {
     <WhyRegister  mainTitle={becomeBuyerData?.register_step_title} subTitle={becomeBuyerData?.register_step_sub_text} rows={becomeBuyerData?.registration_steps}/>
     
     <VAD title={becomeBuyerData?.value_added_title} list={becomeBuyerData?.value_added_buying}/>
+    </>
+    :
+    <div className='d-flex justif justify-content-center'>
+      <h3 className='text-black text-center font-md'>Loading... </h3>
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
+    
+  }
+  </>
   )
 }
 

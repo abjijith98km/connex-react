@@ -28,7 +28,14 @@ const Press = () => {
       })
     }
     {
-      pressList?.post_details ? <PressFeedbacksGrid list={pressList?.post_details}/>: <h4 className='text-center text-primary'>Loading...</h4>
+      pressList?.post_details ? <PressFeedbacksGrid list={pressList?.post_details}/>
+      :
+        <div className='d-flex justif justify-content-center'>
+            <h3 className='text-black text-center font-md'>Loading... </h3>
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+      </div>
     }
 
 

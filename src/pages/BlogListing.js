@@ -84,7 +84,9 @@ const BlogList= ({url})=>{
       const handlePaginate =(data)=>{
           setcurrentPage(data.selected + 1)
         }
-  
+  const generateLink=()=>{
+    return '#'
+  }
   return(
     <>
     <ul className="blogs_listing_block">
@@ -107,7 +109,12 @@ const BlogList= ({url})=>{
           </li>
           )
         }):
-        <h3 className='text-primary text-center font-md'>Loading...</h3>
+        <div className='d-flex justif justify-content-center'>
+        <h3 className='text-black text-center font-md'>Loading... </h3>
+        <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
       }
   </ul>
 
@@ -117,8 +124,8 @@ const BlogList= ({url})=>{
             <span onClick={()=>changePagination(1)} >
                   <a href='#'>First</a>
                 </span>
-            <ReactPaginate pageRangeDisplayed={2}  pageCount={totalPages} breakClassName={'a-disabled'} breakLinkClassName={'a-disabled'} pageRangeDisplayed={2} marginPagesDisplayed={2}  containerClassName={' a-pagination'} onPageChange={handlePaginate}  previousLabel={<img src="uploads/products/left-ar.svg" />} activeClassName={'active'}	 breakLabel={"..."} nextLabel={<img src="uploads/products/right-ar.svg" />} pageClassName={'a-selected'} forcePage={currentPage - 1}/>
-            <span onClick={()=>changePagination(totalPages)}>
+            <ReactPaginate pageRangeDisplayed={2} hrefBuilder={generateLink}  pageCount={totalPages} breakClassName={'a-disabled'} breakLinkClassName={'a-disabled'} pageRangeDisplayed={2} marginPagesDisplayed={2}  containerClassName={' a-pagination'} onPageChange={handlePaginate}  previousLabel={<img src="uploads/products/left-ar.svg" />} activeClassName={'active'}	 breakLabel={"..."} nextLabel={<img src="uploads/products/right-ar.svg" />} pageClassName={'a-selected'} forcePage={currentPage - 1}/>
+            <span onClick={()=>changePagination(totalPages)} >
                   <a  href='#'>Last</a>
                 </span>
          </div>

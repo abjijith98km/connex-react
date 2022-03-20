@@ -27,7 +27,12 @@ const BlogDetail = () => {
             (
                <BlogDetailBlock key={blogsDetail?.post_details[0].id} category={blogsDetail?.post_details[0].category} title={blogsDetail?.post_details[0].name} date={blogsDetail?.post_details[0].post_date} mainImage={blogsDetail?.post_details[0].featured_image.src} content={blogsDetail?.post_details[0].post_content}/>)
 
-            :<h4 className='text-center text-primary'>Loading...</h4>
+            : <div className='d-flex justif justify-content-center'>
+            <h3 className='text-black text-center font-md'>Loading... </h3>
+            <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
           }
         
          <BlogsSuggestions currentId={id} currentCategory={blogsDetail?.post_details[0].category}/>

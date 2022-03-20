@@ -23,7 +23,13 @@ const id = new URLSearchParams(search).get('id');
     <div className="pixel_blog_listing_section_wrap row">
       <div className="col-md-8 col-12">
         {
-          pressDetail?.post_details ? <PressDetailsBlock data={pressDetail?.post_details[0]}/>  :<h4 className='text-center text-primary'>Loading...</h4>
+          pressDetail?.post_details ? <PressDetailsBlock data={pressDetail?.post_details[0]}/>  : 
+          <div className='d-flex justif justify-content-center'>
+          <h3 className='text-black text-center font-md'>Loading... </h3>
+          <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
         }
       </div>
       <div className="col-md-4 col-12">

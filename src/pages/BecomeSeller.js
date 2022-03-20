@@ -17,8 +17,9 @@ const BecomeSeller = () => {
     }
   }, [])
   return (
-    <>
-      <Banner bannerTitle={becomeSellerData?.banner.main_head} bannerImage={becomeSellerData?.banner.banner_image} bannerSubtitle={becomeSellerData?.banner.sub_text} bannerBtn={becomeSellerData?.banner.cta_button}/>
+    <>{
+      becomeSellerData?
+      <>  <Banner bannerTitle={becomeSellerData?.banner.main_head} bannerImage={becomeSellerData?.banner.banner_image} bannerSubtitle={becomeSellerData?.banner.sub_text} bannerBtn={becomeSellerData?.banner.cta_button}/>
 
      <BuyerFeatureBlock services={becomeSellerData?.services}/>
 
@@ -31,6 +32,14 @@ const BecomeSeller = () => {
     <WeHelpYouSucceeed mainTitle={becomeSellerData?.features_title} features={becomeSellerData?.features_list}/>
 
     <Banner bannerTitle={becomeSellerData?.join_safqat.title} bannerImage={becomeSellerData?.join_safqat.background_image} bannerSubtitle={becomeSellerData?.join_safqat.description} bannerBtn={becomeSellerData?.join_safqat.cta_button}/>
+ </>     :
+      <div className='d-flex justif justify-content-center'>
+                <h3 className='text-black text-center font-md'>Loading... </h3>
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+    }
 
     </>
   )
