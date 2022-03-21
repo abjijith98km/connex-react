@@ -86,6 +86,9 @@ export const PressFeedbacksGrid =(props)=>{
           props.list?.map(item =>{
             return(
               <div className="col-lg-4 col-md-6 col-12" key={item.id}>
+                {
+                  console.log(item)
+                }
               <div className="pixel_press_card">
                 <div className="press_img_wrap">
                   <img src={item.logo.src} alt="image"/>

@@ -9,6 +9,8 @@ const BlogDetail = () => {
   const [blogsDetail, setblogsDetail] = useState()
   const search = useLocation().search;
   const id = new URLSearchParams(search).get('id');
+const slug = window.location.href.split("/").pop()
+
   useEffect(() => {
     fetch(`https://safqat.pixelflames.net/wp-json/wp/v2/posts?id=${id}&post_type=blog`)
     .then(response => response.json())
@@ -22,6 +24,9 @@ const BlogDetail = () => {
     <div className="container">
       <div className="pixel_blog_listing_section_wrap row">
         <div className="col-md-8 col-12">
+          {
+            // console.log(blogsDetail)
+          }
           {
             blogsDetail?.post_details[0] ?
             (
@@ -41,7 +46,7 @@ const BlogDetail = () => {
         </div>
         <div className="col-md-4 col-12">
           <LatestBlogs url='https://safqat.pixelflames.net/wp-json/wp/post/featured_blog' type='blog' currentId={id}/>
-         <CategorySelector title='Categoris' url='https://safqat.pixelflames.net/wp-json/wp/v2/blog-category'/>
+         <CategorySelector title='Categories' url='https://safqat.pixelflames.net/wp-json/wp/v2/blog-category'/>
         <InstagramGrid />
         </div>
   

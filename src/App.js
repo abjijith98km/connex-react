@@ -9,7 +9,10 @@ import Header from './includes/Header';
 import Footer from './includes/Footer';
 import BecomeBuyer from './pages/BecomeBuyer';
 import BecomeSeller from './pages/BecomeSeller';
-import SupplierAbout from './pages/SupplierAbout';
+import AboutUs from "./pages/AboutUs";
+import TermsAndCondition from "./pages/TermsAndCondition";
+import ReturnPolicy from "./pages/ReturnPolicy";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 function App() {
 
   return (
@@ -19,13 +22,17 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/press' element={<Press/>} />
-
         <Route path='/press-details' element={<PressDetails/>} />
         <Route path='/blog-details' element={<BlogDetail/>} />
         <Route path='/blog-listing' element={<BlogListing/>} />
         <Route path='/become-buyer' element={<BecomeBuyer/>} />
         <Route path='/become-seller' element={<BecomeSeller/>} />
-        <Route path='/supplier-about' element={<SupplierAbout/>} />
+        <Route path='/about-us' element={<AboutUs/>} />
+        <Route path='/terms' element={<TermsAndCondition/>} />
+        <Route path='/return' element={<ReturnPolicy/>} />
+        <Route path='/privacy' element={<PrivacyPolicy/>} />
+
+
       </Routes>
 <Footer />
     </div>

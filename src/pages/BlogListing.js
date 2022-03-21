@@ -38,14 +38,14 @@ const BlogListing = () => {
           categoryId? 
           
           <BlogList url={`https://safqat.pixelflames.net/wp-json/wp/v2/posts?post_type=blog&category=${categoryId}`} />
-          // <h1>hi there</h1>
-           :<BlogList  url='https://safqat.pixelflames.net/wp-json/wp/v2/posts?post_type=blog'/>  
+           :
+           <BlogList  url='https://safqat.pixelflames.net/wp-json/wp/v2/posts?post_type=blog'/>  
         }
       
       </div>
       <div className="col-md-4 col-12">
          <LatestBlogs url='https://safqat.pixelflames.net/wp-json/wp/post/featured_blog' type='blog'/>
-         <CategorySelector title='Categoris'  url='https://safqat.pixelflames.net/wp-json/wp/v2/blog-category' />
+         <CategorySelector title='Categories'  url='https://safqat.pixelflames.net/wp-json/wp/v2/blog-category' />
           <InstagramGrid />
       </div>
     </div>
