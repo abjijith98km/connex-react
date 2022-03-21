@@ -16,8 +16,9 @@ const LatestBlogs = ({url,type,currentId}) => {
     <h3>{featuredBlog?.heading}</h3>
 
     { type == 'blog' &&
-     featuredBlog?.featured_blog.length > 3?
-      featuredBlog?.featured_blog.filter(blog => blog.id != currentId).slice(1,4).map(blog =>{
+
+   (  featuredBlog?.featured_blog.length > 3?
+      featuredBlog?.featured_blog.filter(blog => blog.id != currentId).slice(0,3).map(blog =>{
         return(
           <li key={blog.id}>
           <a href={`/blog-details?id=${blog.id}`} className="post">
@@ -33,8 +34,7 @@ const LatestBlogs = ({url,type,currentId}) => {
         )
       })
       :
-
-featuredBlog?.featured_blog.filter(blog => blog.id != currentId).map(blog =>{
+    featuredBlog?.featured_blog.filter(blog => blog.id != currentId).map(blog =>{
         return(
           <li key={blog.id}>
           <a href={`/blog-details?id=${blog.id}`} className="post">
@@ -48,11 +48,11 @@ featuredBlog?.featured_blog.filter(blog => blog.id != currentId).map(blog =>{
           </a>
         </li>
         )
-      })
+      }))
     }
     {
       type == 'press' && 
-      featuredBlog?.featured_press.filter(press => press.id != currentId).slice(1,4).map(press =>{
+      featuredBlog?.featured_press?.filter(press => press.id != currentId).slice(0,3).map(press =>{
         return(
           <li key={press.id}>
           <a href={`/press-details?id=${press.id}`} className="post">
