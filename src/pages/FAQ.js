@@ -22,6 +22,8 @@ const FAQ = () => {
     
     <section className="cnt-banner faq-banner">
     <div className="container">
+      {
+        faaqData?.banner_image &&
         <div className="banner-cnt">
             <picture>
                 <img src={faaqData?.banner_image} alt="faq banner"/>
@@ -31,6 +33,7 @@ const FAQ = () => {
                 <p>{faaqData?.banner_sub_title}</p>
             </div>
         </div>
+      }
        
     </div>
 </section>
@@ -46,7 +49,9 @@ const FAQ = () => {
             <div className="faq-q-collapse">
 
               {faqs ? 
-              (  faqs?.map((faq,index)=>{
+              (  
+                faqs == '' ? <h1 className='text-black h6 text-center'>No matches found</h1>:
+             (   faqs?.map((faq,index)=>{
                   return(
                       <div className="faq-q-collapse-box" key={index}>
                           <input id={`collapsible${index+1}`} className="toggle" type="checkbox" />
@@ -57,7 +62,7 @@ const FAQ = () => {
                           </div>
                       </div>
                   )
-                }))
+                })))
                 :
                 (
                   faaqData?.faq.map((faq,index)=>{
