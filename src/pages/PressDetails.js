@@ -21,15 +21,9 @@ const slug = window.location.href.split("/").pop()
     <>
     
 <section className="pixel_blog_listing_section">
-  {
-    // console.log(slug)
-  }
   <div className="container">
     <div className="pixel_blog_listing_section_wrap row">
       <div className="col-md-8 col-12">
-        {
-          // console.log(pressDetail?.post_details[0])
-        }
         {
           pressDetail?.post_details ? <PressDetailsBlock data={pressDetail?.post_details[0]}/>  : 
           <div className='d-flex justif justify-content-center'>

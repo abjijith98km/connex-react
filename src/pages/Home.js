@@ -37,6 +37,12 @@ const Home = () => {
       <li className='mr-5 mb-4'>
         <Link to='/privacy'>privacy policy</Link>
       </li>
+      <li className='mr-5 mb-4'>
+        <Link to='/careers'>Careers</Link>
+      </li>
+      <li className='mr-5 mb-4'>
+        <Link to='/faq'>Faq</Link>
+      </li>
     </ul>
     </nav>
   )

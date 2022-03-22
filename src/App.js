@@ -13,6 +13,8 @@ import AboutUs from "./pages/AboutUs";
 import TermsAndCondition from "./pages/TermsAndCondition";
 import ReturnPolicy from "./pages/ReturnPolicy";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Careers from "./pages/Careers";
+import FAQ from "./pages/FAQ";
 function App() {
 
   return (
@@ -31,8 +33,8 @@ function App() {
         <Route path='/terms' element={<TermsAndCondition/>} />
         <Route path='/return' element={<ReturnPolicy/>} />
         <Route path='/privacy' element={<PrivacyPolicy/>} />
-
-
+        <Route path='/careers' element={<Careers/>} />
+        <Route path='/faq' element={<FAQ/>} />
       </Routes>
 <Footer />
     </div>
