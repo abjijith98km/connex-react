@@ -22,19 +22,21 @@ function App() {
     <div className="App">
       <Header/>
       <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/press' element={<Press/>} />
-        <Route path='/press-details' element={<PressDetails/>} />
-        <Route path='/blog-details' element={<BlogDetail/>} />
-        <Route path='/blog-listing' element={<BlogListing/>} />
-        <Route path='/become-buyer' element={<BecomeBuyer/>} />
-        <Route path='/become-seller' element={<BecomeSeller/>} />
-        <Route path='/about-us' element={<AboutUs/>} />
-        <Route path='/terms' element={<TermsAndCondition/>} />
-        <Route path='/return' element={<ReturnPolicy/>} />
-        <Route path='/privacy' element={<PrivacyPolicy/>} />
-        <Route path='/careers' element={<Careers/>} />
-        <Route path='/faq' element={<FAQ/>} />
+        <Route exact path='/' element={<Home/>} />
+
+        <Route exact  path='/press' element={<Press/>} />
+        <Route   path='/press-details/' element={<PressDetails/>} />
+        
+        <Route  exact path='/blog-listing' element={<BlogListing/>} />
+        <Route   path='/blog-details/' element={<BlogDetail/>} />
+        <Route  exact path='/become-buyer' element={<BecomeBuyer/>} />
+        <Route  exact path='/become-seller' element={<BecomeSeller/>} />
+        <Route  exact  path='/about-us' element={<AboutUs/>} />
+        <Route  exact path='/terms' element={<TermsAndCondition/>} />
+        <Route  exact path='/return' element={<ReturnPolicy/>} />
+        <Route  exact path='/privacy' element={<PrivacyPolicy/>} />
+        <Route  exact path='/careers' element={<Careers/>} />
+        <Route  exact path='/faq' element={<FAQ/>} />
       </Routes>
 <Footer />
     </div>

@@ -17,8 +17,8 @@ const Careers = () => {
 
   return (
     <>
-    <Banner bannerTitle={careersData?.banner_title} bannerImage={careersData?.banner_image} bannerBtn={careersData?.career_cta_button}/>
-    <AboutDescriptionBlock primaryTitle='Careers' primaryDescription={careersData?.career_about} otherDetails={careersData?.career_other_details}/>
+    <Banner bannerTitle={careersData?.banner_title} bannerImage={careersData?.banner_image} />
+    <AboutDescriptionBlock primaryTitle='Careers' primaryDescription={careersData?.career_about} otherDetails={careersData?.career_other_details} careeerBtn={careersData?.career_cta_button}/>
     </>
   )
 }

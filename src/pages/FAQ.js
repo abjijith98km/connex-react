@@ -50,7 +50,7 @@ const FAQ = () => {
 
               {faqs ? 
               (  
-                faqs == '' ? <h1 className='text-black h6 text-center'>No matches found</h1>:
+                faqs == '' ? <h1 className='text-black h6 text-center m-0 p-2'>No matches found</h1>:
              (   faqs?.map((faq,index)=>{
                   return(
                       <div className="faq-q-collapse-box" key={index}>

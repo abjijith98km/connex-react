@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AboutDescriptionBlock = ({primaryTitle,primaryDescription,primaryRow ,otherbenefits, otherDetails}) => {
+const AboutDescriptionBlock = ({primaryTitle,primaryDescription,primaryRow ,otherbenefits, otherDetails,careeerBtn}) => {
   return (
     <>
     <section className="about-safqat">
@@ -30,6 +30,12 @@ const AboutDescriptionBlock = ({primaryTitle,primaryDescription,primaryRow ,othe
             </div>
               {
               otherDetails && <div className="careers-developments" dangerouslySetInnerHTML={{__html:otherDetails}}></div>
+              }
+              {
+                careeerBtn &&
+                <div className="careers-developments" >
+                  <a href={careeerBtn?.url} target={careeerBtn?.target} class="cta-btn mt-5">{careeerBtn?.title}</a>
+                </div>
               }
             
           </div>
