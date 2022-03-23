@@ -1,15 +1,17 @@
 import React,{useEffect , useState} from 'react'
 import LatestBlogs from '../components/LatestBlogs';
 import {useLocation} from "react-router-dom";
+import LoadingText from '../components/LoadingText';
 
 const PressDetails = () => {
 const [pressDetail, setpressDetail] = useState()
 const search = useLocation().search;
 const id = new URLSearchParams(search).get('id');
-const slug = window.location.href.split("/").pop()
+const press = window.location.href.split("/").pop()
+// console.log(press);
   useEffect(() => {
-    fetch(`https://safqat.pixelflames.net/wp-json/wp/v2/posts?id=${id}&post_type=press`)
-    // fetch(`https://safqat.pixelflames.net/wp-json/wp/v2/posts?slug=${slug}&post_type=press`)
+    // fetch(`https://safqat.pixelflames.net/wp-json/wp/v2/posts?id=${id}&post_type=press`)
+    fetch(`https://safqat.pixelflames.net/wp-json/wp/v2/posts?slug={${press}}&post_type=press`)
       .then(response => response.json())
       .then(json => {setpressDetail(json) ;})  
 
@@ -26,14 +28,7 @@ const slug = window.location.href.split("/").pop()
       <div className="col-md-8 col-12">
         {
           pressDetail?.post_details ? <PressDetailsBlock data={pressDetail?.post_details[0]}/>  : 
-          <div className='d-flex justif justify-content-center'>
-          <h3 className='text-black text-center font-md'>Loading... </h3>
-            <svg xmlns="http://www.w3.org/2000/svg" style={{ background: 'rgb(241, 242, 243)', display: 'block', shapeRendering: 'auto'}} width="38px" height="38px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-            <circle cx="50" cy="50" fill="none" stroke="#1d0e0b" strokeWidth="10" r="35" strokeDasharray="164.93361431346415 56.97787143782138">
-              <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
-            </circle>
-            </svg>
-        </div>
+        <LoadingText />
         }
       </div>
       <div className="col-md-4 col-12">

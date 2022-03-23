@@ -6,11 +6,14 @@ import LatestBlogs from '../components/LatestBlogs'
 import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import {useLocation} from "react-router-dom";
+import LoadingText from '../components/LoadingText'
 
 const BlogListing = () => {
   const [blogBanner, setblogBanner] = useState()
   const search = useLocation().search;
   const categoryId = new URLSearchParams(search).get('category');
+const slug = window.location.href.split("/").pop()
+
   useEffect(() => {
     fetch('https://safqat.pixelflames.net/wp-json/acf/v3/pages?slug[]=blog')
     .then(response => response.json())
@@ -26,7 +29,7 @@ const BlogListing = () => {
     <>
     {
       blogBanner?.map(data =>{
-        return <Banner key={data.id} bannerImage={data.acf.banner_image} bannerTitle={data.acf.banner_title}/>
+        return <Banner key={data.id} bannerImage={data.acf.banner_image} bannerTitle={data.acf.banner_title} wide={true}/>
       })
     }
    
@@ -89,14 +92,14 @@ const BlogList= ({url})=>{
   }
   return(
     <>
-    <ul className="blogs_listing_block">
       
       {
         posts? 
-        posts?.map(item =>{
+    (<ul className="blogs_listing_block">
+      {  posts?.map(item =>{
           return (
             <li  key={item.id}>
-              <Link className="blog" to={`/blog-details?id=${item.id}`}>
+              <Link className="blog" to={`/blog-details/${item.slug}`}>
                 <div className="blog_image_wrap">
                   <img src={item.featured_image.src} alt="image"/>
                 </div>
@@ -108,17 +111,11 @@ const BlogList= ({url})=>{
               </Link>
           </li>
           )
-        }):
-        <div className='d-flex justif justify-content-center'>
-          <h3 className='text-black text-center font-md'>Loading... </h3>
-            <svg xmlns="http://www.w3.org/2000/svg" style={{ background: 'rgb(241, 242, 243)', display: 'block', shapeRendering: 'auto'}} width="38px" height="38px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-            <circle cx="50" cy="50" fill="none" stroke="#1d0e0b" strokeWidth="10" r="35" strokeDasharray="164.93361431346415 56.97787143782138">
-              <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
-            </circle>
-            </svg>
-        </div>
+        })}
+        </ul>)
+        :
+       <LoadingText/>
       }
-  </ul>
 
 
   {

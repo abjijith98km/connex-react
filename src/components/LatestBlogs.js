@@ -21,7 +21,7 @@ const LatestBlogs = ({url,type,currentId}) => {
       featuredBlog?.featured_blog.filter(blog => blog.id != currentId).slice(0,3).map(blog =>{
         return(
           <li key={blog.id}>
-          <a href={`/blog-details?id=${blog.id}`} className="post">
+          <a href={`/blog-details/${blog.slug}`} className="post">
             <div className="post_image">
               <img src={blog.featured_image} alt="image"/>
             </div>
@@ -37,7 +37,7 @@ const LatestBlogs = ({url,type,currentId}) => {
     featuredBlog?.featured_blog.filter(blog => blog.id != currentId).map(blog =>{
         return(
           <li key={blog.id}>
-          <a href={`/blog-details?id=${blog.id}`} className="post">
+          <a href={`/blog-details/${blog.slug}`} className="post">
             <div className="post_image">
               <img src={blog.featured_image} alt="image"/>
             </div>
@@ -55,7 +55,7 @@ const LatestBlogs = ({url,type,currentId}) => {
       featuredBlog?.featured_press?.filter(press => press.id != currentId).slice(0,3).map(press =>{
         return(
           <li key={press.id}>
-          <a href={`/press-details?id=${press.id}`} className="post">
+          <a href={`/press-details/${press.slug}`} className="post">
             <div className="post_image">
               <img src={press.featured_image} alt="image"/>
             </div>

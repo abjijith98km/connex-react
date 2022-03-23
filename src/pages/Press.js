@@ -1,5 +1,6 @@
 import React,{useEffect , useState} from 'react'
 import { Link } from 'react-router-dom';
+import LoadingText from '../components/LoadingText';
 
 const Press = () => {
   const [pressData, setpressData] = useState();
@@ -23,21 +24,14 @@ const Press = () => {
     {
       pressData?.map(data =>{
         return(
-          <Banner key={data.id} bannerImage={data.acf.banner_image} bannerTitle={data.acf.banner_title}/>
+          <Banner key={data.id} bannerImage={data.acf.banner_image} bannerTitle={data.acf.banner_title} wide={true}/>
       )
       })
     }
     {
       pressList?.post_details ? <PressFeedbacksGrid list={pressList?.post_details}/>
       :
-      <div className='d-flex justif justify-content-center'>
-      <h3 className='text-black text-center font-md'>Loading... </h3>
-        <svg xmlns="http://www.w3.org/2000/svg" style={{ background: 'rgb(241, 242, 243)', display: 'block', shapeRendering: 'auto'}} width="38px" height="38px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-        <circle cx="50" cy="50" fill="none" stroke="#1d0e0b" strokeWidth="10" r="35" strokeDasharray="164.93361431346415 56.97787143782138">
-          <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
-        </circle>
-        </svg>
-    </div>
+    <LoadingText/>
     }
 
 
@@ -45,22 +39,18 @@ const Press = () => {
   )
 }
 
-export const Banner =({bannerTitle , bannerImage , bannerBtn ,bannerSubtitle})=>{
+export const Banner =({bannerTitle , bannerImage , bannerBtn ,bannerSubtitle , wide})=>{
   return(
     <section className="banner">
   <div className="container">
     <div className="about-banner buyer-banner">
       <div className="about-img">
         <picture>
-          {/* <!-- <source media="(max-width:550px)" srcset="uploads/home/sing-m.webp" type="image/webp"> --> */}
-          {/* <!-- <source media="(max-width:550px)" srcset="uploads/home/sing-m.jpg" type="image/jpeg"> --> */}
-          {/* <source srcset="uploads/buyer-lp/buyer-banner.webp" type="image/webp"/> */}
-          {/* <source srcset="uploads/buyer-lp/buyer-banner.jpg" type="image/jpeg"/> */}
           <img src={bannerImage} alt="about banner"/>
         </picture>
       </div>
       <div className="banner-cnt ">
-        <h2 className="mw-550">{bannerTitle}</h2>
+        <h2 className={wide?`mw-550`:''}>{bannerTitle}</h2>
         {
           bannerSubtitle &&
           <p>{bannerSubtitle}</p> 
@@ -93,7 +83,7 @@ export const PressFeedbacksGrid =(props)=>{
                 <h5>{item.name}</h5>
                 <div dangerouslySetInnerHTML={{__html:item.post_excerpt}}></div>
                 {/* <p>{item.post_excerpt}</p> */}
-                <Link to={`/press-details?id=${item.id}`} className="read_more">Read more</Link>
+                <Link to={`/press-details/${item.slug}`} className="read_more">Read more</Link>
               </div>
             </div>
             )

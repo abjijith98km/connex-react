@@ -8,10 +8,10 @@ const Home = () => {
         <Link to='/press'>Press listing</Link>
       </li>
       <li className='mr-5 mb-4'>
-        <Link to='/press-details?id=245'>Press details</Link>
+        <Link to='/press-details/dafza-appoints-marius-ciavola-to-assume-the-role-of-chief-executive-officer-of-tradeling-the-regions-leading-b2b-emarketplace-2'>Press details</Link>
       </li>
       <li className='mr-5 mb-4'>
-        <Link to='/blog-details?id=432'>Blog details</Link>
+        <Link to='/blog-details/test'>Blog details</Link>
       </li>
       <li className='mr-5 mb-4'>
         <Link to='/blog-listing'>Blog listing</Link>
@@ -23,13 +23,10 @@ const Home = () => {
         <Link to='/become-seller'>Become seller</Link>
       </li>
       <li className='mr-5 mb-4'>
-        <Link to='/supplier-about'>supplier about</Link>
-      </li>
-      <li className='mr-5 mb-4'>
         <Link to='/about-us'>About us</Link>
       </li>
       <li className='mr-5 mb-4'>
-        <Link to='/terms'>Terms & consitions</Link>
+        <Link to='/terms'>Terms & conditions</Link>
       </li>
       <li className='mr-5 mb-4'>
         <Link to='/return'>Return policy</Link>

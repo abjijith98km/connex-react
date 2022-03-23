@@ -25,10 +25,12 @@ function App() {
         <Route exact path='/' element={<Home/>} />
 
         <Route exact  path='/press' element={<Press/>} />
-        <Route   path='/press-details/' element={<PressDetails/>} />
+        <Route   path='/press-details/:press' element={<PressDetails/>} />
         
-        <Route  exact path='/blog-listing' element={<BlogListing/>} />
-        <Route   path='/blog-details/' element={<BlogDetail/>} />
+        <Route exact  path='/blog-listing' element={<BlogListing/>} />
+        <Route   path='/blog-listing/:category' element={<BlogListing/>} />
+
+        <Route   path='/blog-details/:blog' element={<BlogDetail/>} />
         <Route  exact path='/become-buyer' element={<BecomeBuyer/>} />
         <Route  exact path='/become-seller' element={<BecomeSeller/>} />
         <Route  exact  path='/about-us' element={<AboutUs/>} />

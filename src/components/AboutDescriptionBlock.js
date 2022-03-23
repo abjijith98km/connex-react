@@ -34,7 +34,7 @@ const AboutDescriptionBlock = ({primaryTitle,primaryDescription,primaryRow ,othe
               {
                 careeerBtn &&
                 <div className="careers-developments" >
-                  <a href={careeerBtn?.url} target={careeerBtn?.target} class="cta-btn mt-5">{careeerBtn?.title}</a>
+                  <a href={careeerBtn?.url} target={careeerBtn?.target} className="cta-btn mt-5">{careeerBtn?.title}</a>
                 </div>
               }
             

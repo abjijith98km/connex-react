@@ -22,7 +22,7 @@ const BlogsSuggestions = ({currentId, currentCategory}) => {
       posts?.map(post =>{
         return(
           <li key={post.id}>
-          <a href={`/blog-details?id=${post.id}`} className="blog">
+          <a href={`/blog-details/${post.slug}`} className="blog">
             <div className="blog_image_wrap">
               <img src={post.featured_image.src} alt="image"/>
             </div>
