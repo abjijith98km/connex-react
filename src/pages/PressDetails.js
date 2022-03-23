@@ -8,7 +8,6 @@ const [pressDetail, setpressDetail] = useState()
 const search = useLocation().search;
 const id = new URLSearchParams(search).get('id');
 const press = window.location.href.split("/").pop()
-// console.log(press);
   useEffect(() => {
     // fetch(`https://safqat.pixelflames.net/wp-json/wp/v2/posts?id=${id}&post_type=press`)
     fetch(`https://safqat.pixelflames.net/wp-json/wp/v2/posts?slug={${press}}&post_type=press`)

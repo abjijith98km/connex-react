@@ -15,11 +15,8 @@ const AboutUs = () => {
   }, [])
   return (
     <>
-<Banner bannerTitle={aboutUsData?.banner_title} bannerImage={aboutUsData?.banner_image} bannerSubtitle={aboutUsData?.banner_subtitle} bannerBtn={aboutUsData?.banner_button}/>
-  {
-    console.log(aboutUsData)
-  }
-    <HelpingYouSucceed title={aboutUsData?.benefits_title} subTitle={aboutUsData?.benefits_sub_title} row={aboutUsData?.benefits}/>
+    <Banner bannerTitle={aboutUsData?.banner_title} bannerImage={aboutUsData?.banner_image} bannerSubtitle={aboutUsData?.banner_subtitle} bannerBtn={aboutUsData?.banner_button}/>
+        <HelpingYouSucceed title={aboutUsData?.benefits_title} subTitle={aboutUsData?.benefits_sub_title} row={aboutUsData?.benefits}/>
 
     <AboutDescriptionBlock primaryTitle={aboutUsData?.about_title} primaryDescription={aboutUsData?.about_details} primaryRow={aboutUsData?.about_safqat} otherbenefits={aboutUsData?.other_benefits}/>
     </>
